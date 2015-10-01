@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app='myTodoList'>
+<head>
+
+    <title>ToDo List Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-route.min.js"></script>
+    <script src="libs/jquery-2.1.4.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="content/bootstrap.min.css">
+    <link rel="stylesheet" href="content/bootstrap-theme.min.css">
+
+    <script src="app.js"></script>
+    <script src="controllers/myTodoListCtrl.js"></script>
+    <script src="factory/taskFactory.js"></script>
+
+
+</head>
+
+<body ng-controller="myTodoListCtrl">
+<div class="page-header" >
+    <h3>Please complete the tasks</h3>
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <!--<ng-view></ng-view>-->
+        <div class="row">
+            <div class="col-md-4">
+                <form class="form-group">
+                    <div class="form-group">Task No.</div>
+
+                    <div class="form-group">
+                    <input type="text" class="form-control" ng-model="task.taskName" placeholder="enter your task here"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-inline">
+                        <label>active</label>
+                        <input type="checkbox" ng-model="task.taskStatus.active">
+                        <label>complete</label>
+                        <input type="checkbox" ng-model="task.taskStatus.completed">
+                        </div>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary" ng-click="addTask()">Add</button>
+                    <button type="button" class="btn btn-primary" ng-click="clearTask()">Clear</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateTask()">Update</button>
+
+                </form>
+            </div>
+
+            <div class="col-md-8">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="info">
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody ng-repeat="task in allTasks">
+                        <tr>
+                            <td>{{task.taskId}}</td>
+                            <td>{{task.taskName}}</td>
+                            <td>{{task.taskStatus}}</td>
+                            <td>
+                                <a href="#/" ng-click="editTask(task.taskId)">edit</a>
+                                <a href="#/" ng-click="deleteUser(task.taskId)">remove</a>
+                                <!--<button type="button" class="btn btn-primary btn-xs" ng-click="editTask()">edit</button>-->
+                                <!--<button type="button" class="btn btn-primary btn-xs" ng-click="">remove</button>-->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <ul id="filters" class="list-inline">
+                    <li>
+                        <a ng-class="{selected: status == ''} " href="#/">All</a>
+                    </li>
+                    <li>
+                        <a ng-class="{selected: status == 'active'}" href="#/active">Active</a>
+                    </li>
+                    <li>
+                        <a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <footer>
+        &copy; my todo list-<span></span>
+    </footer>
+</div>
+</body>
+</html>
