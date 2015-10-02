@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-4">
                 <form class="form-group">
-                    <div class="form-group">Task No.</div>
+                    <div class="form-group">Task No.{{task.taskId}}</div>
 
                     <div class="form-group">
                     <input type="text" class="form-control" ng-model="task.taskName" placeholder="enter your task here"/>
@@ -40,17 +40,18 @@
 
                     <div class="form-group">
                         <div class="form-inline">
-                        <label>active</label>
-                        <input type="checkbox" ng-model="task.taskStatus.active">
-                        <label>complete</label>
-                        <input type="checkbox" ng-model="task.taskStatus.completed">
+                        <label>
+                        <input type="radio" ng-model="task.taskStatus" value="active">active</label>
+
+                        <label>
+                        <input type="radio" ng-model="task.taskStatus" value="completed">completed</label>
+
                         </div>
                     </div>
 
-
-                    <button type="button" class="btn btn-primary" ng-click="addTask()">Add</button>
+                    <button type="button" ng-hide="isViewing" class="btn btn-primary" ng-click="addTask()">Add</button>
+                    <button type="button" ng-show="isViewing" class="btn btn-warning" ng-click="updateTask()">Update</button>
                     <button type="button" class="btn btn-primary" ng-click="clearTask()">Clear</button>
-                    <button type="button" class="btn btn-primary" ng-click="updateTask()">Update</button>
 
                 </form>
             </div>
@@ -66,14 +67,14 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody ng-repeat="task in allTasks">
+                        <tbody ng-repeat="task in allTasks|filter:{taskStatus:'!deleted'}">
                         <tr>
                             <td>{{task.taskId}}</td>
                             <td>{{task.taskName}}</td>
                             <td>{{task.taskStatus}}</td>
                             <td>
                                 <a href="#/" ng-click="editTask(task.taskId)">edit</a>
-                                <a href="#/" ng-click="deleteUser(task.taskId)">remove</a>
+                                <a href="#/" ng-click="deleteTask(task.taskId)">remove</a>
                                 <!--<button type="button" class="btn btn-primary btn-xs" ng-click="editTask()">edit</button>-->
                                 <!--<button type="button" class="btn btn-primary btn-xs" ng-click="">remove</button>-->
                             </td>
