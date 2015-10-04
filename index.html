@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="content/bootstrap.min.css">
     <link rel="stylesheet" href="content/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="index.css">
 
     <script src="app.js"></script>
     <script src="controllers/myTodoListCtrl.js"></script>
@@ -21,18 +22,20 @@
 
 </head>
 
-<body ng-controller="myTodoListCtrl">
+<div ng-controller="myTodoListCtrl">
 <div class="page-header" >
-    <h3>Please complete the tasks</h3>
+    <h1>Please complete the tasks</h1>
 </div>
 
 <div class="container">
-    <div class="jumbotron">
+
         <!--<ng-view></ng-view>-->
         <div class="row">
+
             <div class="col-md-4">
+                <div class="jumbotron">
                 <form class="form-group">
-                    <div class="form-group">Task No.{{task.taskId}}</div>
+                    <div id="taskNumber" class="form-group">Task No.{{task.taskId}}</div>
 
                     <div class="form-group">
                     <input type="text" class="form-control" ng-model="task.taskName" placeholder="enter your task here"/>
@@ -49,18 +52,24 @@
                         </div>
                     </div>
 
-                    <button type="button" ng-hide="isViewing" class="btn btn-primary" ng-click="addTask()">Add</button>
-                    <button type="button" ng-show="isViewing" class="btn btn-warning" ng-click="updateTask()">Update</button>
-                    <button type="button" class="btn btn-primary" ng-click="clearTask()">Clear</button>
+                    <button type="button" ng-hide="isViewing" class="btn" ng-click="addTask()">Add</button>
+                    <button type="button" ng-show="isViewing" class="btn" ng-click="updateTask()">Update</button>
+                    <button type="button" class="btn" ng-click="clearTask()">Clear</button>
 
                 </form>
+                </div>
             </div>
 
+
+
+
             <div class="col-md-8">
+                <div class="jumbotron">
+
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                        <tr class="info">
+                        <tr id="info">
                             <th>Id</th>
                             <th>Name</th>
                             <th>Status</th>
@@ -73,10 +82,8 @@
                             <td>{{task.taskName}}</td>
                             <td>{{task.taskStatus}}</td>
                             <td>
-                                <a href="#/" ng-click="editTask(task.taskId)">edit</a>
-                                <a href="#/" ng-click="deleteTask(task.taskId)">remove</a>
-                                <!--<button type="button" class="btn btn-primary btn-xs" ng-click="editTask()">edit</button>-->
-                                <!--<button type="button" class="btn btn-primary btn-xs" ng-click="">remove</button>-->
+                                <span class="glyphicon glyphicon-edit" ng-click="editTask(task.taskId)"></span>
+                                <span class="glyphicon glyphicon-remove-circle" ng-click="deleteTask(task.taskId)"></span>
                             </td>
                         </tr>
                         </tbody>
@@ -94,9 +101,12 @@
                         <a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a>
                     </li>
                 </ul>
-            </div>
+                </div>
+                </div>
+
+        <!--</div>-->
         </div>
-    </div>
+</div>
 </div>
 
 <div class="modal-footer">
@@ -104,5 +114,7 @@
         &copy; my todo list-<span></span>
     </footer>
 </div>
+
+
 </body>
 </html>

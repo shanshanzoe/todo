@@ -1,0 +1,48 @@
+
+.btn {
+    border: none;
+    background: #cdc0d6;
+    font-family: inherit;
+    font-style: normal;
+    font-size: 12px;
+    color: inherit;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    background: #bdadc5;
+
+}
+
+
+body {
+    background: #f5f5f5;
+
+    /*background: #ffffff;*/
+    color: #737979
+}
+
+input[placeholder] {
+    font-style: italic;
+    font-size:14px;
+    color: #c9b8d1;
+
+}
+
+h1{
+    text-align: center;
+    font-family: Arial;
+    color: #9fa6a6;
+    opacity: 0.8;
+}
+
+#info{
+    background: #d5c8de;
+    color: inherit;
+}
+
+#taskNumber{
+    font-size: medium;
+}
+
+
