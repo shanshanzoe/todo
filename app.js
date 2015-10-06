@@ -9,3 +9,27 @@ app.config(function($routeProvider){
 
 });
 
+app.directive('currentYear',['dateFilter',function(dateFilter){
+
+    function link(scope, element, attrs){
+
+        var format
+
+        function getYear(){
+            element.text(dateFilter(new Date(), format))
+        }
+
+        scope.$watch(attrs.currentYear, function(val){
+            format=val;
+            getYear();  //1
+        });
+
+
+
+    };
+
+    return{
+        link:link
+    };
+
+}]);

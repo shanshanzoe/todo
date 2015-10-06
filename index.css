@@ -1,12 +1,11 @@
 
 .btn {
     border: none;
-    background: #cdc0d6;
+    background: #d5c8de;
     font-family: inherit;
     font-style: normal;
     font-size: 12px;
-    color: inherit;
-    opacity: 0.9;
+    color:  #737979;;
 }
 
 .btn:hover {
@@ -19,7 +18,7 @@ body {
     background: #f5f5f5;
 
     /*background: #ffffff;*/
-    color: #737979
+    color: #737979;
 }
 
 input[placeholder] {
@@ -43,6 +42,17 @@ h1{
 
 #taskNumber{
     font-size: medium;
+}
+
+/*a{*/
+    /*text-align: center;*/
+    /*position: relative;*/
+    /*top:30px;*/
+    /*left:250px;*/
+/*}*/
+
+a:hover{
+    text-decoration: underline;
 }
 
 

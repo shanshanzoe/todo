@@ -76,31 +76,39 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody ng-repeat="task in allTasks|filter:{taskStatus:'!deleted'}">
+                        <tbody ng-repeat="task in showTasks|filter:{taskStatus:'!deleted'}">
                         <tr>
                             <td>{{task.taskId}}</td>
                             <td>{{task.taskName}}</td>
                             <td>{{task.taskStatus}}</td>
                             <td>
                                 <span class="glyphicon glyphicon-edit" ng-click="editTask(task.taskId)"></span>
-                                <span class="glyphicon glyphicon-remove-circle" ng-click="deleteTask(task.taskId)"></span>
+                                <button type="button" style="border: none; background: inherit" class="glyphicon glyphicon-remove-circle" ng-click="deleteTask(task.taskId)" ng-disabled='isDisabled'></button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <ul id="filters" class="list-inline">
+
+                <ul class="list-inline">
                     <li>
-                        <a ng-class="{selected: status == ''} " href="#/">All</a>
+                        <a href="#/all" ng-click="showAll()">All</a>
                     </li>
+
                     <li>
-                        <a ng-class="{selected: status == 'active'}" href="#/active">Active</a>
+                        <a href="#/active" ng-click="showActive()">Active</a>
                     </li>
+
                     <li>
-                        <a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a>
+                        <a href="#/completed" ng-click="showCompleted()">Completed</a>
                     </li>
                 </ul>
+
+                    <input type="number" ng-model="fromId">TO
+                    <input type="number" ng-model="toId">
+                    <button type="button" class='btn' ng-click="switchOrder()">SWAP</button>
+
                 </div>
                 </div>
 
@@ -111,7 +119,7 @@
 
 <div class="modal-footer">
     <footer>
-        &copy; my todo list-<span></span>
+        &copy; my todo list-<span current-year="format"></span>
     </footer>
 </div>
 
