@@ -1,7 +1,7 @@
 /**
  * Created by shanshan on 9/30/15.
  */
-app.controller('myTodoListCtrl', function($scope, $location, taskFactory){
+app.controller('myTodoListCtrl', function($scope, $location, taskFactory, $http){
     $scope.isViewing=false;
     $scope.isDisabled=false;
     $scope.format='M/d/yy';
@@ -11,6 +11,7 @@ app.controller('myTodoListCtrl', function($scope, $location, taskFactory){
     $scope.showTasks=$scope.allTasks;
     $scope.sequence=0;
 
+    //$http.defaults.headers.get={'Content-Type':'text/plain'};
 
 
     $scope.addTask = function(){
@@ -38,6 +39,14 @@ app.controller('myTodoListCtrl', function($scope, $location, taskFactory){
             $scope.showTasks=completedTasks;
 
         }
+
+        //interact with backend
+        $http.post('http://www.codeee.com:8080/task/insert',
+            {taskId:$scope.task.taskId,taskName:$scope.task.taskName,taskStatus:$scope.task.taskStatus})
+            .success(function(data){
+
+            })
+            .error();
 
 
     }
